@@ -1,0 +1,16 @@
+version: "2.4"
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: example  
+  app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    volumes:
+      - "./app/src:/src"
+    ports:
+      - 8000:8000
