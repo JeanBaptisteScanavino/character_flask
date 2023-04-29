@@ -13,9 +13,11 @@ class GenderEnum(str, Enum):
     FEMALE = "FEMALE"
     NO_SELECTION = "NO_SELECTION"
 
+
 class WorkEnum(str, Enum):
     WARRIOR = "WARRIOR"
     NO_SELECTION = "NO_SELECTION"
+
 
 class ICharacter(BaseModel):
     id: int | None

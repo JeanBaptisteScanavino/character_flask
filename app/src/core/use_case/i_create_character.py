@@ -1,9 +1,8 @@
 from typing import List
 
-from ..domain.model.Character import Character
-
 from ..domain.interfaces.ICharacter import ICharacter
 from ..domain.interfaces.ICharacterRepository import ICharacterRepository
+from ..domain.model.Character import Character
 
 
 class CreateCharacter:
