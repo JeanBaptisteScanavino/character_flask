@@ -26,6 +26,5 @@ class DummyCharacter:
 
 class InMemoryCharacterRepository:
     def create_character(character):
-        dummy_character = DummyCharacter(character).create_character()
-        print(type(dummy_character.id))
-        return dummy_character
+        character.id = uuid4()
+        return character

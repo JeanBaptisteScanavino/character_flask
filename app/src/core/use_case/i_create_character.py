@@ -1,5 +1,7 @@
 from typing import List
 
+from ..domain.model.Character import Character
+
 from ..domain.interfaces.ICharacter import ICharacter
 from ..domain.interfaces.ICharacterRepository import ICharacterRepository
 
@@ -11,4 +13,6 @@ class CreateCharacter:
         ]
 
     def create_character(self, character: ICharacter):
-        return self.character_repository.create_character(character=character)
+        new_character = Character(character=character)
+        print(new_character.id)
+        return self.character_repository.create_character(character=new_character)

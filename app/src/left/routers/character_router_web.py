@@ -7,5 +7,4 @@ def create_character_router_web(app, dependencies):
 
     @app.route("/character", methods=["POST"])
     def create_character():
-        print(Request.get_data)
         return {"create": "OK"}
