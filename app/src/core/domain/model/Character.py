@@ -2,7 +2,8 @@ from typing import List
 from uuid import uuid4
 
 from ..interfaces.ICharacter import (GenderEnum, OriginEnum, PyCaract, PyMoney,
-                                     PyObjectInInventory, WorkEnum)
+                                     PyObjectInInventory, PySkillsOnSheet,
+                                     WorkEnum)
 from .Caract import Caract
 from .Inventory import Inventory
 from .Money import Money
@@ -29,6 +30,7 @@ class Character:
         self.caract = self.get_or_create_caract(character)
         self.money = self.get_or_create_money(character)
         self.inventory = self.get_or_create_property(character, "inventory", [])
+        self.skills = self.get_or_create_property(character, "skills", [])
 
     def get_or_create_caract(self, character) -> PyCaract:
         if not "caract" in character:
@@ -44,16 +46,19 @@ class Character:
         self,
         character,
         property: str,
-        default_property: str | int | OriginEnum | WorkEnum | GenderEnum,
-    ) -> str | int | OriginEnum | WorkEnum | GenderEnum:
+        default_property: str | int | OriginEnum | WorkEnum | GenderEnum | List,
+    ) -> (
+        str
+        | int
+        | OriginEnum
+        | WorkEnum
+        | GenderEnum
+        | List[PyObjectInInventory]
+        | List[PySkillsOnSheet]
+    ):
         if not property in character:
             return default_property
         return character[property]
-
-    def get_or_create_inventory(self, character) -> List[PyObjectInInventory]:
-        if not "inventory" in character:
-            return Inventory([])
-        return Inventory(character["inventory"])
 
     @property
     def magic_resistance(self) -> int:

@@ -40,6 +40,11 @@ class PyObjectInInventory(BaseModel):
     name: str
 
 
+class PySkillsOnSheet(BaseModel):
+    id: UUID4
+    name: str
+
+
 class PyCharacter(BaseModel):
     id: str | None
     name: str
@@ -52,4 +57,4 @@ class PyCharacter(BaseModel):
     level: int
     destiny_points: int
     inventory: List[UUID4] | List[PyObjectInInventory]
-    skills: List[UUID4]
+    skills: List[UUID4] | List[PySkillsOnSheet]

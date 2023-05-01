@@ -13,5 +13,4 @@ class CreateCharacter:
 
     def create_character(self, character: PyCharacter):
         new_character = Character(character=character)
-        print(new_character.id)
         return self.character_repository.create_character(character=new_character)

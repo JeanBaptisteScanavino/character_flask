@@ -27,7 +27,21 @@ class DummyCharacter:
         return self
 
 
+FAKE_INVENTORY = ["Shuriken of Destiny", "Wood Log"]
+FAKE_SKILLS = ["Clone", "Eat lot of ramen"]
+
+
 class InMemoryCharacterRepository:
-    def create_character(character):
+    def create_character(character: PyCharacter):
         character.id = uuid4()
+        if len(character.inventory) > 0:
+            new_inventory = []
+            for i, item_id in enumerate(character.inventory):
+                new_inventory.append({"id": item_id, "name": FAKE_INVENTORY[i]})
+            character.inventory = new_inventory
+        if len(character.skills) > 0:
+            new_skill = []
+            for i, skill in enumerate(character.skills):
+                new_skill.append({"id": skill, "name": FAKE_SKILLS[i]})
+            character.skills = new_skill
         return character

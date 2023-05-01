@@ -251,14 +251,14 @@ def test_i_can_create_a_character_without_inventory():
 
 
 def test_i_can_create_a_character_with_inventory():
-    first_object_id = uuid.uuid4()
-    second_object_id = uuid.uuid4()
-    character = {"name": "naruto", "inventory": [first_object_id, second_object_id]}
+    first_item_id = uuid.uuid4()
+    second_item_id = uuid.uuid4()
+    character = {"name": "naruto", "inventory": [first_item_id, second_item_id]}
     dependencies = {"character_repository": InMemoryCharacterRepository}
     result: PyCharacter = CreateCharacter(dependencies).create_character(character)
     assert result.inventory == [
-        {"id": first_object_id, "name": "Shuriken of Destiny"},
-        {"id": second_object_id, "name": "Wood Log"},
+        {"id": first_item_id, "name": "Shuriken of Destiny"},
+        {"id": second_item_id, "name": "Wood Log"},
     ]
     assert is_valid_uuid(result.id)
 
@@ -272,8 +272,13 @@ def test_i_can_create_a_character_without_skills():
 
 
 def test_i_can_create_a_character_with_skills():
-    character = {"name": "naruto", "skills": [uuid.uuid4(), uuid.uuid4()]}
+    first_skill_id = uuid.uuid4()
+    second_skill_id = uuid.uuid4()
+    character = {"name": "naruto", "skills": [first_skill_id, second_skill_id]}
     dependencies = {"character_repository": InMemoryCharacterRepository}
     result: PyCharacter = CreateCharacter(dependencies).create_character(character)
-    assert result.skills == character["skills"]
+    assert result.skills == [
+        {"id": first_skill_id, "name": "Clone"},
+        {"id": second_skill_id, "name": "Eat lot of ramen"},
+    ]
     assert is_valid_uuid(result.id)

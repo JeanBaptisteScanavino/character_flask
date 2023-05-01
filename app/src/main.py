@@ -1,6 +1,5 @@
-from flask import Flask
-
 from core.domain.interfaces.ICharacterRepository import ICharacterRepository
+from flask import Flask
 from left.routers.main_router import create_main_router
 
 app = Flask(__name__)
