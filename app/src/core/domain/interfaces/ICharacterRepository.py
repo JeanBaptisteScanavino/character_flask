@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
 
-from .ICharacter import ICharacter
+from .ICharacter import PyCharacter
 
 
 class ICharacterRepository(ABCMeta):
@@ -8,5 +8,5 @@ class ICharacterRepository(ABCMeta):
         pass
 
     @abstractmethod
-    def create_character(character: ICharacter):
+    def create_character(character: PyCharacter):
         pass

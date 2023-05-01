@@ -1,6 +1,7 @@
 from enum import Enum
+from typing import List
 
-from pydantic import BaseModel
+from pydantic import UUID4, BaseModel
 
 
 class OriginEnum(str, Enum):
@@ -19,9 +20,36 @@ class WorkEnum(str, Enum):
     NO_SELECTION = "NO_SELECTION"
 
 
-class ICharacter(BaseModel):
-    id: int | None
+class PyMoney(BaseModel):
+    gold: int
+    silver: int
+    thritil: int
+    berylium: int
+
+
+class PyCaract(BaseModel):
+    force: int
+    intel: int
+    charisma: int
+    agility: int
+    brave: int
+
+
+class PyObjectInInventory(BaseModel):
+    id: UUID4
     name: str
-    origin: OriginEnum.NO_SELECTION
-    gender: GenderEnum.NO_SELECTION
-    work: WorkEnum.NO_SELECTION
+
+
+class PyCharacter(BaseModel):
+    id: str | None
+    name: str
+    origin: OriginEnum = OriginEnum.NO_SELECTION
+    gender: GenderEnum = GenderEnum.NO_SELECTION
+    work: WorkEnum = WorkEnum.NO_SELECTION
+    caract: PyCaract
+    money: PyMoney
+    XP: int
+    level: int
+    destiny_points: int
+    inventory: List[UUID4] | List[PyObjectInInventory]
+    skills: List[UUID4]
